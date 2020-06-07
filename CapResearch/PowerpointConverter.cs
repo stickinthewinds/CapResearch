@@ -1,3 +1,4 @@
+using Microsoft.Office.Core;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace CapResearch
@@ -8,9 +9,9 @@ namespace CapResearch
         {
             var pptApp = new PowerPoint.Application();
             var powerpointDocument = pptApp.Presentations.Open(input,
-                Microsoft.Office.Core.MsoTriState.msoTrue, //ReadOnly
-                Microsoft.Office.Core.MsoTriState.msoFalse, //Untitled
-                Microsoft.Office.Core.MsoTriState.msoFalse); //Window not visible during converting
+                MsoTriState.msoTrue, //ReadOnly
+                MsoTriState.msoFalse, //Untitled
+                MsoTriState.msoFalse); //Window not visible during converting
            
             powerpointDocument.ExportAsFixedFormat(output, 
                 PowerPoint.PpFixedFormatType.ppFixedFormatTypePDF);
