@@ -18,13 +18,9 @@ namespace CapResearch
                     Stopwatch watch = new Stopwatch();
                     watch.Start();
                     if (args[0].Equals("word"))
-                    {
                         WordConverter.Convert(args[1], args[2]);
-                    }
                     else if (args[0].Equals("ppt"))
-                    {
                         PowerpointConverter.Convert(args[1], args[2]);
-                    }
                     else
                     {
                         watch.Stop();
@@ -35,11 +31,13 @@ namespace CapResearch
                     Console.WriteLine($"Time taken for conversion of {args[0]} to PDF: {watch.ElapsedMilliseconds}ms");
                 }
                 else
+                {
                     throw new ArgumentException("Invalid arguments.\n" +
                                                 "Arguments are 'FileType' 'input file' 'output file'." +
                                                 "\nFileType can be either 'word' or 'ppt'." +
                                                 "\nExample input file for word: C:\\Users\\Example\\example.docx" +
                                                 "\nExample output file: C:\\Users\\Example\\example.pdf");
+                }
             }
             catch (Exception e)
             {
