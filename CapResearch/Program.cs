@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Diagnostics;
 
 namespace CapResearch
@@ -13,21 +14,27 @@ namespace CapResearch
         {
             try
             {
-                if (args.Length == 3)
+                if (args.Length >= 2)
                 {
-                    Stopwatch watch = new Stopwatch();
+                    var watch = new Stopwatch();
                     watch.Start();
-                    if (args[0].Equals("word"))
-                        WordConverter.Convert(args[1], args[2]);
-                    else if (args[0].Equals("ppt"))
-                        PowerpointConverter.Convert(args[1], args[2]);
-                    else
+
+                    switch (Path.GetExtension(args[0]).Substring(1).ToLower())
                     {
-                        watch.Stop();
-                        throw new ArgumentException("Invalid type.");
+                        case "docx": case "doc": case "odt":
+                            WordConverter.Convert(args[0], args[1]);
+                            break;
+
+                        case "pptx": case "ppt":
+                            PowerpointConverter.Convert(args[0], args[1]);
+                            break;
+
+                        default:
+                            watch.Stop();
+                            throw new ArgumentException("Invalid file type");
                     }
+
                     watch.Stop();
-            
                     Console.WriteLine($"Time taken for conversion of {args[0]} to PDF: {watch.ElapsedMilliseconds}ms");
                 }
                 else
