@@ -4,7 +4,7 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace CapResearch
 {
-    public class WordConverter
+    public static class WordConverter
     {
         public static void Convert(string input, string output)
         {

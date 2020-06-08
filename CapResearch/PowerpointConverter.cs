@@ -5,7 +5,7 @@ using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 
 namespace CapResearch
 {
-    public class PowerpointConverter
+    public static class PowerpointConverter
     {
         public static void Convert(string input, string output)
         {
