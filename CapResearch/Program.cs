@@ -19,14 +19,14 @@ namespace CapResearch
                     var watch = new Stopwatch();
                     watch.Start();
 
-                    switch (Path.GetExtension(args[0]).Substring(1).ToLower())
+                    switch (GetExtension(args[0]))
                     {
                         case "docx": case "doc": case "odt":
-                            WordConverter.Convert(args[0], args[1]);
+                            WordConverter.Convert(args[0], args[1], GetExtension(args[1]));
                             break;
 
                         case "pptx": case "ppt":
-                            PowerpointConverter.Convert(args[0], args[1]);
+                            PowerpointConverter.Convert(args[0], args[1], GetExtension(args[1]));
                             break;
 
                         default:
@@ -51,5 +51,7 @@ namespace CapResearch
                 Console.WriteLine(e.Message);
             }
         }
+
+        public static string GetExtension(string path) => Path.GetExtension(path).Substring(1).ToLower();
     }
 }
